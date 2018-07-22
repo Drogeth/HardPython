@@ -1,7 +1,9 @@
+#include <iostream>
 #include <ctime>
 #include "SDL2/SDL.h"
 #include "glad/glad.h"
 #include "core/window.h"
+#include "core/input.h"
 
 int main(int argc, char *argv[]) {
     // Initialize SDL and OpenGL
@@ -12,6 +14,10 @@ int main(int argc, char *argv[]) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glClearColor(0.f, 0.f, 0.f, 1.f);
+
+    // Setup controller input
+    minalear::init_input();
+    auto gamepad = minalear::get_controller_ptr();
 
     // Improved fixed update functions
     double time_accumulator = 0.f;
@@ -26,7 +32,8 @@ int main(int argc, char *argv[]) {
 
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // minalear::handle_input();
+        minalear::handle_input();
+
 
         // Accumulate time and call update_fixed if past threshold (16ms = 60fps)
         time_accumulator += minalear::dt();
@@ -37,12 +44,11 @@ int main(int argc, char *argv[]) {
             time_accumulator = 0.f;
         }
 
-        // screen_manager.update_realtime();
-        // screen_manager.draw_active_screen();
-
         minalear::swap_buffers();
+        if (minalear::was_button_up(minalear::JOYSTICK_BUTTONS::A)) {
+            std::cout << "W";
+        }
 
-        // SDL_PumpEvents(); // Maybe not required?
         SDL_FlushEvent(SDL_JOYAXISMOTION);
     } // end main game loop
 
