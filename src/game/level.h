@@ -22,6 +22,7 @@ public:
     int height;
     int tileWidth;
     int tileHeight;
+    int layer_count;
 
     level_layer *layers;
 
