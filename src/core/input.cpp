@@ -45,6 +45,7 @@ void minalear::handle_input() {
             SDL_JoystickGetAxis(main_joystick, LEFT_JOYSTICK_X_AXIS) / AXIS_LENGTH,
             SDL_JoystickGetAxis(main_joystick, LEFT_JOYSTICK_Y_AXIS) / AXIS_LENGTH
     );
+    // Get the raw data for the right stick (each axis is bound between -1 and 1)
     glm::vec2 raw_right_stick = glm::vec2(
             SDL_JoystickGetAxis(main_joystick, RIGHT_JOYSTICK_X_AXIS) / AXIS_LENGTH,
             SDL_JoystickGetAxis(main_joystick, RIGHT_JOYSTICK_Y_AXIS) / AXIS_LENGTH

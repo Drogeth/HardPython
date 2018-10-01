@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
             test_level.layers[i].data[k] = id;
         }
     }
-
+    // Deletes the temp buffer
     delete level_data;
 
     // Setup debug shader
