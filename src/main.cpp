@@ -15,7 +15,7 @@
 
 int main(int argc, char *argv[]) {
     // Initialize SDL and OpenGL
-    minalear::init_game_window(800, 450);
+    minalear::init_game_window(800, 450, "Alloy Cog Hard - Ghost Speak");
     minalear::init_opengl();
 
     glEnable(GL_BLEND);

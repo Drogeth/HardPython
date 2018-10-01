@@ -28,7 +28,7 @@ struct {
 
 uint32_t start_time;
 
-void minalear::init_game_window(const int window_width, const int window_height) {
+void minalear::init_game_window(const int window_width, const int window_height, const char* window_title) {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -38,7 +38,7 @@ void minalear::init_game_window(const int window_width, const int window_height)
     //TODO: Vsync option doesn't seem to affect PC Workstation
     //SDL_GL_SetSwapInterval(0);
 
-    window = SDL_CreateWindow("Alloy Cog Hard - Ghoul Speak",
+    window = SDL_CreateWindow(window_title,
                               SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED,
                               window_width, window_height,

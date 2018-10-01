@@ -6,7 +6,7 @@
 #define MINALEAR_WINDOW_H
 
 namespace minalear {
-    void init_game_window(int window_width, int window_height);
+    void init_game_window(int window_width, int window_height, char* window_title);
     void init_opengl();
     void swap_buffers();
     void finalize_window();
