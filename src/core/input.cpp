@@ -85,22 +85,23 @@ bool minalear::is_button_down(JOYSTICK_BUTTONS button) {
 
     return this_state->button_states[(int)button];
 }
-
+// checks to see if button is being pressed
 bool minalear::was_button_down(JOYSTICK_BUTTONS button) {
     return (this_state->button_states[(int)button] && !last_state->button_states[(int)button]);
 }
+// checks to see if button was pressed
 bool minalear::was_button_up(JOYSTICK_BUTTONS button) {
     return (!this_state->button_states[(int)button] && last_state->button_states[(int)button]);
 }
-
+// checks to see if key is being pushed on keyboard
 bool minalear::is_key_down(int key_scancode) {
     return this_key_state[key_scancode];
 }
-
+// checks to see if key was pressed
 bool minalear::was_key_down(int key_scancode) {
     return (this_key_state[key_scancode] && !last_key_state[key_scancode]);
 }
-
+// checks to see if the key was released
 bool minalear::was_key_up(int key_scancode) {
     return (!this_key_state[key_scan] && last_key_state[key_scancode]);
 }
