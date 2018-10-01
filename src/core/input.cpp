@@ -10,6 +10,7 @@
 
 SDL_Joystick *main_joystick;
 minalear::controller_state *this_state, *last_state;
+uint8_t this_key_state[SDL_NUM_SCANCODES], last_key_state[SDL_NUM_SCANCODES];
 
 const float AXIS_LENGTH = SDL_JOYSTICK_AXIS_MAX;
 const float TRIGGER_BUTTON_MIN_VALUE = 0.85f;
@@ -29,11 +30,17 @@ void minalear::init_input() {
     this_state = new minalear::controller_state;
     last_state = new minalear::controller_state;
 
+    memcopy(this_key_state, SDL_GetKeyboardState(NULL), sizeof(uint8_t) * SDL_NUM_SCANCODES);
+
     handle_input();
 }
 
 void minalear::handle_input() {
+     SDL_PumpEvents();
     (*last_state) = (*this_state);
+
+    memcopy(last_key_state, this_key_state, sizeof(uint8_t) * SDL_NUM_SCANCODES);
+    memcopy(last_key_state, this_key_state, SDL_GetKeyboardState(NULL), sizeof(uint8_t) * SDL_NUM_SCANCODES);
 
     //Update button states
     for (int i = 0; i < NUM_JOYSTICK_BUTTONS; i++) {
@@ -84,6 +91,18 @@ bool minalear::was_button_down(JOYSTICK_BUTTONS button) {
 }
 bool minalear::was_button_up(JOYSTICK_BUTTONS button) {
     return (!this_state->button_states[(int)button] && last_state->button_states[(int)button]);
+}
+
+bool minalear::is_key_down(int key_scancode) {
+    return this_key_state[key_scancode];
+}
+
+bool minalear::was_key_down(int key_scancode) {
+    return (this_key_state[key_scancode] && !last_key_state[key_scancode]);
+}
+
+bool minalear::was_key_up(int key_scancode) {
+    return (!this_key_state[key_scan] && last_key_state[key_scancode]);
 }
 
 minalear::controller_state* minalear::get_controller_ptr() {

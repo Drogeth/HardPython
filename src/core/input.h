@@ -47,6 +47,10 @@ namespace minalear {
     bool was_button_down(JOYSTICK_BUTTONS button);
     bool was_button_up(JOYSTICK_BUTTONS button);
 
+    bool is_key_down(int key_scancode);
+    bool was_key_down(int key_scancode);
+    bool was_key_up(int key_scancode);
+
     controller_state* get_controller_ptr();
 }
 
