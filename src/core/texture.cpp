@@ -26,13 +26,15 @@ minalear::texture::texture(const char* filePath) {
 
     stbi_image_free(data);
 }
-
+// gets the texture width
 int minalear::texture::getWidth() {
     return width;
 }
+// gets the texture height
 int minalear::texture::getHeight() {
     return height;
 }
+// assigns a textureID to a texture
 void minalear::texture::bind() {
     glBindTexture(GL_TEXTURE_2D, textureID);
 }
